@@ -13,24 +13,25 @@
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd8ec, #d9c8ff);
+  color: #30243b;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ffd6ec, #d9c7ff, #c8e8ff);
-  color: #30243b;
 }
 
 .card {
   width: 92%;
   max-width: 650px;
-  min-height: 500px;
-  padding: 45px 25px;
-  background: rgba(255,255,255,.92);
+  min-height: 650px;
+  padding: 35px 25px;
+  background: rgba(255,255,255,.95);
   border-radius: 35px;
-  box-shadow: 0 20px 60px rgba(80,40,100,.2);
   text-align: center;
+  box-shadow: 0 15px 50px rgba(70,30,90,.2);
   position: relative;
+  overflow: hidden;
 }
 
 .sticker {
@@ -38,69 +39,58 @@ body {
   font-size: 50px;
 }
 
-.top-left { top: 15px; left: 15px; }
-.top-right { top: 15px; right: 15px; }
-.bottom-left { bottom: 15px; left: 15px; }
-.bottom-right { bottom: 15px; right: 15px; }
+.one { top: 15px; left: 20px; }
+.two { top: 15px; right: 20px; }
+.three { bottom: 15px; left: 20px; }
+.four { bottom: 15px; right: 20px; }
+
+.question {
+  padding-top: 70px;
+}
 
 h1 {
-  font-size: clamp(30px, 6vw, 48px);
+  font-size: clamp(30px, 7vw, 48px);
   line-height: 1.2;
-  margin: 60px 0 25px;
+  margin: 20px 0;
 }
 
 p {
-  font-size: 18px;
-  opacity: .7;
+  font-size: 19px;
+  color: #706878;
+  line-height: 1.5;
 }
 
 .buttons {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
   margin-top: 35px;
 }
 
 button {
-  border: none;
+  width: 260px;
+  min-height: 70px;
+  border: 0;
   border-radius: 50px;
-  padding: 17px 40px;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: bold;
+  color: white;
   cursor: pointer;
-  transition: .2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-button:hover {
-  transform: scale(1.05);
+button:active {
+  transform: scale(.96);
 }
 
 .yes {
-  background: #ff4f9a;
-  color: white;
+  background: #f94c9a;
 }
 
 .no {
-  background: #8b6bd6;
-  color: white;
-}
-
-input {
-  width: 85%;
-  max-width: 400px;
-  padding: 17px;
-  border: 3px solid #e7b7d6;
-  border-radius: 18px;
-  font-size: 22px;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.send {
-  background: #ff4f9a;
-  color: white;
-  margin-top: 20px;
+  background: #8968d5;
 }
 
 .hidden {
@@ -108,12 +98,24 @@ input {
 }
 
 .big {
-  font-size: 80px;
-  margin-top: 50px;
+  font-size: 75px;
+  margin-top: 40px;
 }
 
-.result h2 {
-  font-size: 38px;
+input {
+  width: 85%;
+  max-width: 400px;
+  padding: 18px;
+  margin-top: 20px;
+  border: 3px solid #e8b5d5;
+  border-radius: 20px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.send {
+  background: #f94c9a;
+  margin-top: 20px;
 }
 </style>
 </head>
@@ -122,150 +124,123 @@ input {
 
 <div class="card">
 
-<div class="sticker top-left">🎀</div>
-<div class="sticker top-right">🧸</div>
-<div class="sticker bottom-left">🌸</div>
-<div class="sticker bottom-right">💌</div>
+<div class="sticker one">🎀</div>
+<div class="sticker two">🧸</div>
+<div class="sticker three">🌸</div>
+<div class="sticker four">💌</div>
 
 
 <!-- QUESTION 1 -->
 
-<section id="question1">
+<div id="q1" class="question">
 
 <h1>💞 Est-ce que tu as un petit ami ? 🥺💕</h1>
 
 <p>Sois honnête… je ne vais pas te juger 😭✨</p>
 
 <div class="buttons">
-
-<button class="yes" onclick="boyfriendYes()">
-OUI 💕
-</button>
-
-<button class="no" onclick="boyfriendNo()">
-NON 🙈
-</button>
-
+<button id="boyfriendYes" class="yes">OUI 💕</button>
+<button id="boyfriendNo" class="no">NON 🙈</button>
 </div>
 
-</section>
+</div>
 
 
 <!-- BOYFRIEND YES -->
 
-<section id="boyfriendResult" class="hidden">
+<div id="boyfriendEnd" class="question hidden">
 
-<div class="big">🐶😭</div>
+<div class="big">😭💔</div>
 
-<h2>Awww… 😭💔</h2>
+<h1>D'accord… 🥺</h1>
 
-<p>D'accord, je comprends. Plus de questions 🥺</p>
+<p>Merci d'avoir répondu 💕</p>
 
-</section>
+</div>
 
 
 <!-- QUESTION 2 -->
 
-<section id="question2" class="hidden">
+<div id="q2" class="question hidden">
 
 <h1>👀 Est-ce que tu as un crush sur quelqu’un ? 💘</h1>
 
-<p>Hmmmm… dis-moi la vérité 🤭🌸</p>
+<p>Hmm… dis-moi la vérité 🤭🌸</p>
 
 <div class="buttons">
-
-<button class="yes" onclick="crushYes()">
-OUI 😍
-</button>
-
-<button class="no" onclick="crushNo()">
-NON 😌
-</button>
+<button id="crushYes" class="yes">OUI 😍</button>
+<button id="crushNo" class="no">NON 😌</button>
+</div>
 
 </div>
 
-</section>
 
+<!-- NAME -->
 
-<!-- NAME QUESTION -->
-
-<section id="nameQuestion" class="hidden">
+<div id="nameQuestion" class="question hidden">
 
 <h1>💌 Écris 4 lettres de son prénom 👀</h1>
 
 <p>Juste 4 lettres… 🤫🧸</p>
 
-<input
-id="nameInput"
-maxlength="4"
-placeholder="4 lettres"
->
+<input id="nameInput"
+       type="text"
+       maxlength="4"
+       autocomplete="off"
+       placeholder="4 lettres">
 
-<br>
+<div class="buttons">
+<button id="nameButton" class="send">ENVOYER 💗</button>
+</div>
 
-<button class="send" onclick="submitName()">
-ENVOYER 💗
-</button>
-
-</section>
+</div>
 
 
 <!-- ASK OUT -->
 
-<section id="askOut" class="hidden">
+<div id="askOut" class="question hidden">
 
 <h1>🌷 Est-ce que je peux t’inviter à sortir ? 🥹💕</h1>
 
 <p>C’est la question importante… 😳💗</p>
 
 <div class="buttons">
-
-<button class="yes" onclick="askYes()">
-OUI 🥰
-</button>
-
-<button class="no" onclick="askNo()">
-NON 😭
-</button>
+<button id="askYes" class="yes">OUI 🥰</button>
+<button id="askNo" class="no">NON 😭</button>
+</div>
 
 </div>
 
-</section>
 
+<!-- GIRLFRIEND -->
 
-<!-- GIRLFRIEND QUESTION -->
-
-<section id="girlfriend" class="hidden">
+<div id="girlfriend" class="question hidden">
 
 <div class="big">💖🥹💐</div>
 
-<h2>Tu veux être ma copine ? 💕</h2>
+<h1>Tu veux être ma copine ? 💕</h1>
 
 <p>🌸✨🧸💌✨🌸</p>
 
-</section>
+</div>
 
 
 <!-- THANK YOU -->
 
-<section id="thankYou" class="hidden">
+<div id="thankYou" class="question hidden">
 
 <div class="big">💗🥺</div>
 
-<h2>Merci d’avoir répondu 💕</h2>
+<h1>Merci d’avoir répondu 💕</h1>
 
 <p>Merci pour ton honnêteté 🌸</p>
 
-</section>
+</div>
 
 </div>
 
 
 <script>
-
-/*
-   TON FORMSPREE
-*/
 
 const FORM_ENDPOINT =
 "https://formspree.io/f/xljrwogj";
@@ -279,148 +254,98 @@ const answers = {
 };
 
 
-/* Cacher toutes les pages */
+function hideAll() {
 
-function hideEverything() {
-
-  document
-  .querySelectorAll(".card > section")
-  .forEach(section => {
-
+  document.querySelectorAll(".question").forEach(function(section) {
     section.classList.add("hidden");
-
   });
 
 }
 
 
-/* Envoyer les réponses à Formspree */
+function show(id) {
 
-async function sendAnswers() {
+  hideAll();
 
-  const data = new FormData();
-
-  data.append(
-    "Petit ami",
-    answers.boyfriend
-  );
-
-  data.append(
-    "Crush",
-    answers.crush
-  );
-
-  data.append(
-    "Prénom - 4 lettres",
-    answers.name || "N/A"
-  );
-
-  data.append(
-    "Peux-tu sortir avec moi",
-    answers.askOut || "N/A"
-  );
-
-  try {
-
-    await fetch(
-      FORM_ENDPOINT,
-      {
-        method: "POST",
-        body: data,
-        headers: {
-          "Accept": "application/json"
-        }
-      }
-    );
-
-  } catch(error) {
-
-    console.log(error);
-
-  }
+  document.getElementById(id).classList.remove("hidden");
 
 }
 
 
-/* PETIT AMI */
+function sendAnswers() {
 
-function boyfriendYes() {
+  const data = new FormData();
+
+  data.append("Petit ami", answers.boyfriend);
+  data.append("Crush", answers.crush);
+  data.append("Prénom", answers.name || "N/A");
+  data.append("Invitation", answers.askOut || "N/A");
+
+  fetch(FORM_ENDPOINT, {
+    method: "POST",
+    body: data,
+    headers: {
+      "Accept": "application/json"
+    }
+  }).catch(function(error) {
+    console.log(error);
+  });
+
+}
+
+
+/* QUESTION 1 */
+
+document.getElementById("boyfriendYes").addEventListener("click", function() {
 
   answers.boyfriend = "OUI";
 
   sendAnswers();
 
-  hideEverything();
+  show("boyfriendEnd");
 
-  document
-  .getElementById("boyfriendResult")
-  .classList.remove("hidden");
-
-}
+});
 
 
-function boyfriendNo() {
+document.getElementById("boyfriendNo").addEventListener("click", function() {
 
   answers.boyfriend = "NON";
 
-  hideEverything();
+  show("q2");
 
-  document
-  .getElementById("question2")
-  .classList.remove("hidden");
-
-}
+});
 
 
-/* CRUSH */
+/* QUESTION 2 */
 
-function crushYes() {
+document.getElementById("crushYes").addEventListener("click", function() {
 
   answers.crush = "OUI";
 
-  hideEverything();
+  show("nameQuestion");
 
-  document
-  .getElementById("nameQuestion")
-  .classList.remove("hidden");
-
-}
+});
 
 
-function crushNo() {
+document.getElementById("crushNo").addEventListener("click", function() {
 
   answers.crush = "NON";
 
-  /*
-    PAS DE QUESTION SUR LE NOM.
-    On va directement à :
-    "Est-ce que je peux t’inviter à sortir ?"
-  */
+  show("askOut");
 
-  hideEverything();
-
-  document
-  .getElementById("askOut")
-  .classList.remove("hidden");
-
-}
+});
 
 
-/* NOM */
+/* NAME */
 
-function submitName() {
+document.getElementById("nameButton").addEventListener("click", function() {
 
   const name =
-    document
-    .getElementById("nameInput")
-    .value
-    .trim();
+    document.getElementById("nameInput").value.trim();
 
-  if(name.length !== 4) {
+  if (name.length !== 4) {
 
-    alert(
-      "Écris exactement 4 lettres 💗"
-    );
+    alert("Écris exactement 4 lettres 💗");
 
     return;
 
@@ -428,45 +353,33 @@ function submitName() {
 
   answers.name = name;
 
-  hideEverything();
+  show("askOut");
 
-  document
-  .getElementById("askOut")
-  .classList.remove("hidden");
-
-}
+});
 
 
-/* CAN I ASK YOU OUT */
+/* ASK OUT */
 
-function askYes() {
+document.getElementById("askYes").addEventListener("click", function() {
 
   answers.askOut = "OUI";
 
   sendAnswers();
 
-  hideEverything();
+  show("girlfriend");
 
-  document
-  .getElementById("girlfriend")
-  .classList.remove("hidden");
-
-}
+});
 
 
-function askNo() {
+document.getElementById("askNo").addEventListener("click", function() {
 
   answers.askOut = "NON";
 
   sendAnswers();
 
-  hideEverything();
+  show("thankYou");
 
-  document
-  .getElementById("thankYou")
-  .classList.remove("hidden");
-
-}
+});
 
 </script>
 
