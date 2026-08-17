@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Une petite question 💕</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd6ec, #d9c7ff, #c8e8ff);
+  color: #30243b;
+}
+
+.card {
+  width: 92%;
+  max-width: 650px;
+  min-height: 500px;
+  padding: 45px 25px;
+  background: rgba(255,255,255,.92);
+  border-radius: 35px;
+  box-shadow: 0 20px 60px rgba(80,40,100,.2);
+  text-align: center;
+  position: relative;
+}
+
+.sticker {
+  position: absolute;
+  font-size: 50px;
+}
+
+.top-left { top: 15px; left: 15px; }
+.top-right { top: 15px; right: 15px; }
+.bottom-left { bottom: 15px; left: 15px; }
+.bottom-right { bottom: 15px; right: 15px; }
+
+h1 {
+  font-size: clamp(30px, 6vw, 48px);
+  line-height: 1.2;
+  margin: 60px 0 25px;
+}
+
+p {
+  font-size: 18px;
+  opacity: .7;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+button {
+  border: none;
+  border-radius: 50px;
+  padding: 17px 40px;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.yes {
+  background: #ff4f9a;
+  color: white;
+}
+
+.no {
+  background: #8b6bd6;
+  color: white;
+}
+
+input {
+  width: 85%;
+  max-width: 400px;
+  padding: 17px;
+  border: 3px solid #e7b7d6;
+  border-radius: 18px;
+  font-size: 22px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.send {
+  background: #ff4f9a;
+  color: white;
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.big {
+  font-size: 80px;
+  margin-top: 50px;
+}
+
+.result h2 {
+  font-size: 38px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="sticker top-left">🎀</div>
+<div class="sticker top-right">🧸</div>
+<div class="sticker bottom-left">🌸</div>
+<div class="sticker bottom-right">💌</div>
+
+
+<!-- QUESTION 1 -->
+
+<section id="question1">
+
+<h1>💞 Est-ce que tu as un petit ami ? 🥺💕</h1>
+
+<p>Sois honnête… je ne vais pas te juger 😭✨</p>
+
+<div class="buttons">
+
+<button class="yes" onclick="boyfriendYes()">
+OUI 💕
+</button>
+
+<button class="no" onclick="boyfriendNo()">
+NON 🙈
+</button>
+
+</div>
+
+</section>
+
+
+<!-- BOYFRIEND YES -->
+
+<section id="boyfriendResult" class="hidden">
+
+<div class="big">🐶😭</div>
+
+<h2>Awww… 😭💔</h2>
+
+<p>D'accord, je comprends. Plus de questions 🥺</p>
+
+</section>
+
+
+<!-- QUESTION 2 -->
+
+<section id="question2" class="hidden">
+
+<h1>👀 Est-ce que tu as un crush sur quelqu’un ? 💘</h1>
+
+<p>Hmmmm… dis-moi la vérité 🤭🌸</p>
+
+<div class="buttons">
+
+<button class="yes" onclick="crushYes()">
+OUI 😍
+</button>
+
+<button class="no" onclick="crushNo()">
+NON 😌
+</button>
+
+</div>
+
+</section>
+
+
+<!-- NAME QUESTION -->
+
+<section id="nameQuestion" class="hidden">
+
+<h1>💌 Écris 4 lettres de son prénom 👀</h1>
+
+<p>Juste 4 lettres… 🤫🧸</p>
+
+<input
+id="nameInput"
+maxlength="4"
+placeholder="4 lettres"
+>
+
+<br>
+
+<button class="send" onclick="submitName()">
+ENVOYER 💗
+</button>
+
+</section>
+
+
+<!-- ASK OUT -->
+
+<section id="askOut" class="hidden">
+
+<h1>🌷 Est-ce que je peux t’inviter à sortir ? 🥹💕</h1>
+
+<p>C’est la question importante… 😳💗</p>
+
+<div class="buttons">
+
+<button class="yes" onclick="askYes()">
+OUI 🥰
+</button>
+
+<button class="no" onclick="askNo()">
+NON 😭
+</button>
+
+</div>
+
+</section>
+
+
+<!-- GIRLFRIEND QUESTION -->
+
+<section id="girlfriend" class="hidden">
+
+<div class="big">💖🥹💐</div>
+
+<h2>Tu veux être ma copine ? 💕</h2>
+
+<p>🌸✨🧸💌✨🌸</p>
+
+</section>
+
+
+<!-- THANK YOU -->
+
+<section id="thankYou" class="hidden">
+
+<div class="big">💗🥺</div>
+
+<h2>Merci d’avoir répondu 💕</h2>
+
+<p>Merci pour ton honnêteté 🌸</p>
+
+</section>
+
+</div>
+
+
+<script>
+
+/*
+   TON FORMSPREE
+*/
+
+const FORM_ENDPOINT =
+"https://formspree.io/f/xljrwogj";
+
+
+const answers = {
+  boyfriend: "",
+  crush: "",
+  name: "",
+  askOut: ""
+};
+
+
+/* Cacher toutes les pages */
+
+function hideEverything() {
+
+  document
+  .querySelectorAll(".card > section")
+  .forEach(section => {
+
+    section.classList.add("hidden");
+
+  });
+
+}
+
+
+/* Envoyer les réponses à Formspree */
+
+async function sendAnswers() {
+
+  const data = new FormData();
+
+  data.append(
+    "Petit ami",
+    answers.boyfriend
+  );
+
+  data.append(
+    "Crush",
+    answers.crush
+  );
+
+  data.append(
+    "Prénom - 4 lettres",
+    answers.name || "N/A"
+  );
+
+  data.append(
+    "Peux-tu sortir avec moi",
+    answers.askOut || "N/A"
+  );
+
+  try {
+
+    await fetch(
+      FORM_ENDPOINT,
+      {
+        method: "POST",
+        body: data,
+        headers: {
+          "Accept": "application/json"
+        }
+      }
+    );
+
+  } catch(error) {
+
+    console.log(error);
+
+  }
+
+}
+
+
+/* PETIT AMI */
+
+function boyfriendYes() {
+
+  answers.boyfriend = "OUI";
+
+  sendAnswers();
+
+  hideEverything();
+
+  document
+  .getElementById("boyfriendResult")
+  .classList.remove("hidden");
+
+}
+
+
+function boyfriendNo() {
+
+  answers.boyfriend = "NON";
+
+  hideEverything();
+
+  document
+  .getElementById("question2")
+  .classList.remove("hidden");
+
+}
+
+
+/* CRUSH */
+
+function crushYes() {
+
+  answers.crush = "OUI";
+
+  hideEverything();
+
+  document
+  .getElementById("nameQuestion")
+  .classList.remove("hidden");
+
+}
+
+
+function crushNo() {
+
+  answers.crush = "NON";
+
+  /*
+    PAS DE QUESTION SUR LE NOM.
+    On va directement à :
+    "Est-ce que je peux t’inviter à sortir ?"
+  */
+
+  hideEverything();
+
+  document
+  .getElementById("askOut")
+  .classList.remove("hidden");
+
+}
+
+
+/* NOM */
+
+function submitName() {
+
+  const name =
+    document
+    .getElementById("nameInput")
+    .value
+    .trim();
+
+  if(name.length !== 4) {
+
+    alert(
+      "Écris exactement 4 lettres 💗"
+    );
+
+    return;
+
+  }
+
+  answers.name = name;
+
+  hideEverything();
+
+  document
+  .getElementById("askOut")
+  .classList.remove("hidden");
+
+}
+
+
+/* CAN I ASK YOU OUT */
+
+function askYes() {
+
+  answers.askOut = "OUI";
+
+  sendAnswers();
+
+  hideEverything();
+
+  document
+  .getElementById("girlfriend")
+  .classList.remove("hidden");
+
+}
+
+
+function askNo() {
+
+  answers.askOut = "NON";
+
+  sendAnswers();
+
+  hideEverything();
+
+  document
+  .getElementById("thankYou")
+  .classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
